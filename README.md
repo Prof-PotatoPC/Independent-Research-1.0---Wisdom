@@ -2,6 +2,8 @@
 
 Independent dentistry research plan · Literature checked November 25, 2026 · Planning stage
 
+The [ligament tension and collagen fiber research note](ligament-tension.md) follows up on the [patent review and synthetic socket model](force-hypothesis.md). It covers how fibers share force, what the dental collagenase studies measured, and candidates for reversible changes in fiber movement.
+
 **Finding.** I found no human intervention study demonstrating that a medicine selectively dissolves a fully formed adult third molar in place. There are public records of researchers chemically interrupting tooth development in animals, observing spontaneous resorption in people, and enzymatically loosening teeth in excised pig jaws. Each offers a plausible piece of the story. None identifies what the clinicians originally heard or supports the claim that someone suppressed a treatment. [1966 chemical experiment](https://doi.org/10.1177/00220345660450020401) · [Adult human case](https://pubmed.ncbi.nlm.nih.gov/3146626/) · [Pig-jaw extraction study](https://pmc.ncbi.nlm.nih.gov/articles/PMC9225053/) · [Targeted human trial registry search](https://clinicaltrials.gov/api/v2/studies?query.cond=%28%22third%20molar%22%20OR%20%22wisdom%20tooth%22%29&query.intr=%28collagenase%20OR%20%22tooth%20dissolution%22%20OR%20%22enzymatic%20extraction%22%29&countTotal=true&pageSize=10&fields=NCTId%2CBriefTitle%2CInterventionName&format=json)
 
 ## Follow the tissue and the endpoint

@@ -2,7 +2,7 @@
 
 ## The proposed experiment
 
-The motivating target is a **50% average reduction in peak force relative to a matched vehicle control**. A lower peak can arise if each attachment carries less load or if attachment groups reach their peak at different displacements. This model makes those explanations compete. It predicts that a synthetic socket whose connectors release in stages can reach the same peak as a uniformly weaker socket while taking more displacement and more total work to release. Force, displacement and work are independently measurable. The idea is a hypothesis about dental test materials, with no asserted priority or clinical efficacy.
+This example uses a **50% reduction in peak force** to compare two mechanisms. The size of any benefit in a future experiment is an outcome to measure. A lower peak can arise if each attachment carries less load or if attachment groups reach their peak at different displacements. The model predicts that a synthetic socket whose connectors release in stages can reach the same peak as a uniformly weaker socket while taking more displacement and more total work to release. Force, displacement and work are independently measurable. The [ligament tension research note](ligament-tension.md) develops the question of what might change the release pattern.
 
 ## Where the patent trail leads
 
