@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare strain-dependent collagen cleavage assumptions and motor feedback in a synthetic tooth socket.">
+  <title>Ligament Mechanics Lab</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="layout masthead-inner">
+      <span>Wisdom tooth research</span>
+      <nav aria-label="Research resources">
+        <a href="https://github.com/Prof-PotatoPC/Independent-Research-1.0---Wisdom/blob/main/research/simulation-research.md">Sources and methods</a>
+        <a href="https://github.com/Prof-PotatoPC/Independent-Research-1.0---Wisdom">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="layout">
+    <section class="intro">
+      <p class="kicker">Independent research simulator</p>
+      <h1>Ligament Mechanics Lab</h1>
+      <p>Compare early collagen cleavage in matched samples, then explore how a motor that backs off after a release changes a synthetic socket’s final pull test.</p>
+      <p class="scope">All predictions are conditional on the selected rate law. Time, force, and displacement use model units.</p>
+    </section>
+    <div class="workspace">
+      <aside class="controls" aria-label="Simulation settings">
+        <form id="settings">
+          <h2>Model settings</h2>
+          <label for="scenario">Cleavage under stretch</label>
+          <select id="scenario">
+            <option value="0.5">Slower under stretch</option>
+            <option value="1">Tension-independent baseline</option>
+            <option value="2">Faster under stretch</option>
+            <option value="custom">Custom rate ratio</option>
+          </select>
+          <label for="ratio">Stretched / relaxed rate</label>
+          <input id="ratio" type="number" min="0.10" max="4" step="0.01" value="0.50" required>
+          <label for="stretch">Stretched sample strain</label>
+          <div class="input-unit"><input id="stretch" type="number" min="2" max="8" step="0.5" value="4" required><span>%</span></div>
+          <label for="early-time">Early observation time</label>
+          <input id="early-time" type="number" min="0.005" max="0.20" step="0.005" value="0.050" required>
+          <details>
+            <summary>Socket and sampling settings</summary>
+            <label for="dose">Relaxed cleavage exposure</label>
+            <input id="dose" type="number" min="0" max="1.50" step="0.05" value="0.40" required>
+            <label for="actuator">Actuator stiffness</label>
+            <input id="actuator" type="number" min="0.25" max="30" step="0.25" value="12" required>
+            <label for="backoff">Motor retreat distance</label>
+            <input id="backoff" type="number" min="0" max="0.05" step="0.005" value="0.025" required>
+            <label for="seed">Random seed</label>
+            <input id="seed" type="number" min="0" max="4294967295" step="1" value="23" required>
+            <label for="replicates">Paired virtual sockets</label>
+            <input id="replicates" type="number" min="1" max="100" step="1" value="40" required>
+          </details>
+          <button type="submit" id="run">Run comparison</button>
+          <button type="button" id="export" class="secondary" disabled>Download data CSV</button>
+          <p id="status" role="status" class="status"></p>
+        </form>
+      </aside>
+      <div class="results" id="results" aria-busy="true">
+        <section class="panel">
+          <h2>Early collagen cleavage</h2>
+          <p>Hold the two samples at fixed strain and compare the expected fraction cleaved. The relaxed sample starts at zero imposed strain.</p>
+          <dl class="metrics">
+            <div><dt>Relaxed</dt><dd id="relaxed">—</dd></div>
+            <div><dt>Stretched</dt><dd id="stretched">—</dd></div>
+            <div><dt>Stretched minus relaxed</dt><dd id="early-delta">—</dd></div>
+          </dl>
+          <p id="early-warning" class="note" hidden>The model predicts more than 10% cleavage in at least one sample. Shorten the observation time to stay within the chosen early window.</p>
+          <div class="chart"><canvas id="early-chart" role="img" aria-label="Expected fraction cleaved over time for relaxed and stretched samples"></canvas></div>
+          <ul class="legend"><li class="teal">Relaxed</li><li class="violet">Stretched</li></ul>
+        </section>
+        <section class="panel">
+          <h2>Motor feedback in a synthetic socket</h2>
+          <p>Both sockets start with the same fibers and exposure. One motor continues its advance. The other briefly retreats after a detected force drop. Both then undergo the same final pull.</p>
+          <dl class="metrics">
+            <div><dt>Continue · peak vs. intact</dt><dd id="continue-peak">—</dd></div>
+            <div><dt>Back off · peak vs. intact</dt><dd id="backoff-peak">—</dd></div>
+            <div><dt>Back off minus continue</dt><dd id="peak-delta">—</dd></div>
+          </dl>
+          <p id="socket-summary" class="summary"></p>
+          <div class="figures">
+            <figure>
+              <figcaption>Conditioning force · first paired socket</figcaption>
+              <div class="chart small"><canvas id="conditioning-chart" role="img" aria-label="Conditioning force over time for both motor programs"></canvas></div>
+            </figure>
+            <figure>
+              <figcaption>Final pull · first paired socket</figcaption>
+              <div class="chart small"><canvas id="pull-chart" role="img" aria-label="Final pull force versus displacement for both arms and intact baseline"></canvas></div>
+            </figure>
+          </div>
+          <ul class="legend"><li class="teal">Continue</li><li class="violet">Back off</li><li class="gray">Intact baseline · final pull only</li></ul>
+          <div class="snapshot">
+            <label for="snapshot">Conditioning snapshot <output id="snapshot-time" for="snapshot"></output></label>
+            <input type="range" id="snapshot" min="0" max="100" value="58">
+            <div class="figures">
+              <figure><figcaption>Continue</figcaption><canvas class="fixture" id="continue-fixture" role="img" aria-label="Schematic diagram of the continuing socket"></canvas></figure>
+              <figure><figcaption>Back off</figcaption><canvas class="fixture" id="backoff-fixture" role="img" aria-label="Schematic diagram of the retreating socket"></canvas></figure>
+            </div>
+            <p class="hint">Live fibers appear as colored lines. Faint dashes mark original positions of removed fibers.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
