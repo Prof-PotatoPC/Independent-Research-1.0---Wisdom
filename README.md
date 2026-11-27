@@ -2,6 +2,8 @@
 
 Independent dentistry research plan · Literature checked November 25, 2026 · Planning stage
 
+For the proposed 3D study, start with the [evidence and staged task list](research/3d-study-roadmap.md). The [11 copy-ready prompts](research/3d-study-prompts.md) cover the public-data analysis, mathematical checks, anatomical model, motor experiment and expert-reviewable 3D viewer.
+
 The Ligament Mechanics Lab compares early collagen cleavage under fixed strain and tests motor retreat in a synthetic socket. Start with the [sourced research and model guide](research/simulation-research.md) or read the [computational manuscript draft](research/manuscript.md). The [simulator source](docs/) runs locally in a browser with the instructions in the model guide.
 
 The [ligament tension and collagen fiber research note](ligament-tension.md) follows up on the [patent review and synthetic socket model](force-hypothesis.md). It covers how fibers share force, what the dental collagenase studies measured, and candidates for reversible changes in fiber movement.
